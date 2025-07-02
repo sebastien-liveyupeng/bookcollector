@@ -44,6 +44,7 @@ export default function Register() {
 
   return (
     <div>
+       <h1>Bienvenu sur BookCollection</h1>
       <h2>Créer un compte</h2>
       <form onSubmit={handleSubmit}>
         <input

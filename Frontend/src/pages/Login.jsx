@@ -35,6 +35,7 @@ export default function Login() {
 
   return (
     <div>
+      <h1>Bienvenu sur BookCollection</h1>
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
         <input

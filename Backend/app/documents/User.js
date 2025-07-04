@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  badges: [{
+    name: String,
+    description: String,
+    emoji: String,
+    level: Number,
+    earnedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   profilePicture: {
     type: String,
     default: ''

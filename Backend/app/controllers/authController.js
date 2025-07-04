@@ -30,13 +30,12 @@ exports.register = async (req, res) => {  //inscription
 
     const token = generateToken(newUser._id);
 
-            res.cookie('jwt', token, {
+    res.cookie('jwt', token, {
             httpOnly: true,
             secure: false, 
             sameSite: 'strict',
             maxAge: 5 * 60 * 1000 // 5 minutes
             });
-
 
     res.status(201).json({ user: { id: newUser._id, username: newUser.username } });
   } catch (err) {
@@ -57,13 +56,12 @@ exports.login = async (req, res) => { //login
 
     const token = generateToken(user._id);
 
-        res.cookie('jwt', token, {
-        httpOnly: true,
-        secure: false, 
-        sameSite: 'strict',
-        maxAge: 5 * 60 * 1000 // 5 minutes
-        });
-
+   res.cookie('jwt', token, {
+            httpOnly: true,
+            secure: false, 
+            sameSite: 'strict',
+            maxAge: 5 * 60 * 1000 // 5 minutes
+            });
 
     res.status(200).json({ user: { id: user._id, username: user.username } });
   } catch (err) {

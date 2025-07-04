@@ -1,5 +1,6 @@
 const Book = require('../documents/Book');
 const User = require('../documents/User');
+const RewardService = require('../services/RewardService');
 
 exports.addBookToCollection = async (req, res) => {
   const userId = req.user.id;
@@ -32,7 +33,14 @@ exports.addBookToCollection = async (req, res) => {
     user.favorites.push(newBook._id);
     await user.save();
 
-    return res.status(201).json({ message: 'Livre ajouté à la collection', book: newBook });
+    // Vérifier et attribuer les badges
+    const rewardResult = await RewardService.checkAndAwardBadges(userId);
+
+    return res.status(201).json({ 
+      message: 'Livre ajouté à la collection', 
+      book: newBook,
+      rewards: rewardResult
+    });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Erreur serveur' });
